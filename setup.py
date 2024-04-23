@@ -20,7 +20,7 @@ def make_version():
     minutes = str(now.hour * 60 + now.minute)
 
     date_string = f"{year}{month}{day}{minutes}"
-    Path("statsview", "version.py").write_text(f'__version__ = "{date_string}"\n')
+    Path("tonemaker", "version.py").write_text(f'__version__ = "{date_string}"\n')
     return date_string
 
 
