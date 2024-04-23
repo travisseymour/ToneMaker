@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from setuptools import find_packages, setup
+from setuptools import setup
 
 PYTHON_VERSION = ">=3.9"
 
@@ -34,9 +34,12 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/travisseymour/ToneMaker",
     packages=["tonemaker"],
+    keywords=[],
+    scripts=[],
     entry_points={
         "console_scripts": ["tonemaker = tonemaker.__main__:app"],
     },
+    zip_safe=False,
     install_requires=DEPENDENCIES,
     python_requires=PYTHON_VERSION,
     license="License :: OSI Approved :: MIT License",
