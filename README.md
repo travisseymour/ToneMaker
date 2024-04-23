@@ -29,13 +29,25 @@ Instructions for installing on macOS, Linux, and Windows using a package manager
 
 All Linux distributions come with a built-in package manager, but users of macOS and Windows will need to install a package manager before installing PipX. On macOS this will require the Homebrew package manager (https://brew.sh/) and on Windows, this requires the Scoop  package manager (https://github.com/ScoopInstaller/Scoop). You will need to install the required package manager before following the instructions linked above.
 
-### --- Without Using A Package Manager
+### ... Using Python
 
 If you'd rather not use a package manager to install PipX, you can do the following:
 
-- Make sure you have Python installed on your system. For macOS and Linux, it will be installed by default. On Windows, you can begin the installation by simply running `python` on the commandline. If it's not there, it will invite you to install it via the app-store.
-- Go to the PipX releases page (https://github.com/pypa/pipx/releases) and download the latest version of `pipx.pyz`. Save this somewhere handy, because you will use it every time you interact with PipX. I recommend your home folder (e.g., `C:\Users\travis` on Windows, `/home/travis` on Linux and macOS) because it will be there whenever you open your terminal. Alternatively, you can put it wherever you want and add that location to your system Path variable.
-- Once you have `pipx.pyz` in its final location, enter this command in the terminal: `python pipx.pyz ensurepath` and press ENTER. Now close and re-open the terminal.
+Make sure you have Python installed on your system. For macOS and Linux, it will be installed by default. On Windows, you can install Python via the app-store.
+
+Open a terminal and issue these commands:
+
+Install Pipx:
+
+```bash
+python -m pip install pipx
+```
+
+Make sure you can access installed apps directly from the commandline:
+
+```bash
+python -m pipx ensurepath
+```
 
 ---
 
@@ -46,53 +58,34 @@ If you'd rather not use a package manager to install PipX, you can do the follow
 Open a terminal and issue this command
 
 ```bash
-pipx install https://github.com/travisseymour/ToneMaker
+pipx install "git+https://github.com/travisseymour/ToneMaker"
 ```
 
-### You Installed The ZipApp (pipx.pyz) Version of PipX
+### You Installed PipX Using Python
 
-Open a terminal
- 
-If `pipx.pyz` is not somewhere on your Path, then navigate to the folder where `pipx.pyz` can be found
-
-Now issue this command
+Open a terminal and issue this command
 
 ```bash
-python pipx.pyz install https://github.com/travisseymour/ToneMaker
+python -m pipx install "git+https://github.com/travisseymour/ToneMaker"
 ```
 
 --- 
 
 ## Using ToneMaker
 
-### You Installed PipX Using A Package Manager
-
-Open a terminal. 
-
 To create a wavefile called "low_tone_220Hz.wav" that plays a 220 hertz tone for 100 milliseconds, enter a command like this:
-
 
 ```bash
 tonemaker 220 100 low_tone_220Hz.wav
 ```
 
-### You Installed The ZipApp (pipx.pyz) Version of PipX
-
-Open a terminal
-
-If `pipx.pyz` is not somewhere on your Path, then navigate to the folder where `pipx.pyz` can be found
-
-To create a wavefile called "low_tone_220Hz.wav" that plays a 220 hertz tone for 100 milliseconds, enter a command like this:
-
-```bash
-python pipx.pyz run tonemaker 220 100 low_tone_220Hz.wav
-```
+_if you have problems on MS Windows, see "Potential Issues On MS Windows" section below!_
 
 ---
 
 ## Upgrading ToneMaker Using PipX
 
-If a new release of ToneMaker is posted on GitHub, you can upgrade your version using PipX
+If a new release of ToneMaker is posted on GitHub, you can upgrade your version using PipX.
 
 ### You Installed PipX Using A Package Manager
 
@@ -102,16 +95,32 @@ Open a terminal and issue this command
 pipx upgrade tonemaker
 ```
 
-### You Installed The ZipApp (pipx.pyz) Version of PipX
+### You Installed PipX Using Python
 
-Open a terminal
- 
-If `pipx.pyz` is not somewhere on your Path, then navigate to the folder where `pipx.pyz` can be found
-
-Now issue this command
+Open a terminal and issue this command
 
 ```bash
-python pipx.pyz upgrade tonemaker
+python -m pipx upgrade tonemaker
 ```
+
+_if you have problems on MS Windows, see "Potential Issues On MS Windows" section below!_
+
+---
+
+## Potential Issues On MS Windows
+
+### Windows can't locate PipX installed applications from the commandline
+
+In some cases, the earlier `python -m pipx ensurepath` command won't correctly add the necessary folder to your sytem path. The result is that running PipX installed programs won't work properly. E.g., issuing commands like `tonemaker --help` will result in an error.
+
+If you are in this situation, you can try manually adding the necessary PipX folder to your Windows PATH variable:
+
+<mark>Make sure you type this command carefully and double-check it before pressing ENTER. Otherwise, you could leave your PATH in an unusable state.</mark>
+
+```bash
+setx PATH "%PATH%;C:\Users\YOURUSERNAME\.local\bin\"
+```
+
+Now close the terminal, re-open it, and try the command again.
 
 ---
