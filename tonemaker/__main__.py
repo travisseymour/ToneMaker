@@ -73,3 +73,6 @@ def generate_pure_tone(frequency: int, duration: int, filename: str):
             color=typer.colors.RED,
         )
 
+
+if __name__ == "__main__":
+    app()
