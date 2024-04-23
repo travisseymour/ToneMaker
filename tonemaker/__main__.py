@@ -34,10 +34,9 @@ def generate_pure_tone(frequency: int, duration: int, filename: str):
     """
     Generate a sound file based on a pure tone specification.
 
-    Args:
-        frequency (int): The frequency of the tone in Hertz.
-        duration (int): The duration of the sound in milliseconds.
-        filename (str): The filename to save the sound file.
+    Args: frequency (int): The frequency of the tone in Hertz.
+    duration (int): The duration of the sound in milliseconds.
+    filename (str): The filename to save the sound file.
 
     E.g.:
 
