@@ -25,7 +25,7 @@ def make_version():
 
 
 setup(
-    name="ToneMaker",
+    name="tonemaker",
     version=make_version(),
     author="Travis L. Seymour, PhD",
     author_email="nogard@ucsc.edu",
