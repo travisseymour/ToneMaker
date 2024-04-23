@@ -33,7 +33,7 @@ setup(
     long_description="Commandline application to generate sound files based on a pure tone specifications.",
     long_description_content_type="text/markdown",
     url="https://github.com/travisseymour/ToneMaker",
-    packages=find_packages(),
+    packages=["tonemaker"],
     entry_points={
         "console_scripts": ["tonemaker = tonemaker.__main__:app"],
     },
