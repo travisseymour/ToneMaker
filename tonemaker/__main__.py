@@ -21,6 +21,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 """
+import sys
 
 import numpy as np
 import typer
@@ -61,17 +62,14 @@ def generate_pure_tone(frequency: int, duration: int, filename: str):
         # TODO: see if it's possible to have an option for mp3 files
         write(filename, sample_rate, scaled_data)
 
-        typer.echo(
-            f"Sound file '{filename}' generated successfully.", color=typer.colors.GREEN
-        )
+        msg = typer.style(f"Sound file '{filename}' generated successfully.", fg=typer.colors.GREEN)
+        typer.echo(msg)
 
     except Exception as e:
-
-        typer.echo(
-            f"Generation of sound file '{filename}' failed: '{e}'",
-            color=typer.colors.RED,
-        )
+        msg = typer.style(f"Generation of sound file '{filename}' failed: '{e}'", fg=typer.colors.RED)
+        typer.echo(msg)
 
 
 if __name__ == "__main__":
     app()
+    sys.exit()
