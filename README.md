@@ -12,6 +12,8 @@ Travis L. Seymour, PhD
 
 Note: The generated tone will be 16-bit with a 44100 sample rate.
 
+<mark>Note: Project metadata format has been changed. If you installed ToneMaker prior to 2025, upgrading might now work. You need to uninstall ToneMaker and reinstall. Afterwards, upgrades will work as expected.
+
 ---
 
 ![screenshot.png](screenshot.png)
