@@ -1,7 +1,0 @@
-loguru
-numpy
-scipy
-typer
-
-# development
-black

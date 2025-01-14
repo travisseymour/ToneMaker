@@ -12,62 +12,84 @@ Travis L. Seymour, PhD
 
 Note: The generated tone will be 16-bit with a 44100 sample rate.
 
-ToneMaker is designed to run using PipX (https://github.com/pypa/pipx). See below for installation and use.
-
 ---
 
 ![screenshot.png](screenshot.png)
 
 ---
 
-## Installing PipX
+## Installation Overview
 
+To install ToneMaker, I suggest you use `uv` (https://docs.astral.sh/uv/) on MacOS, Windows, and Linux. Although you can use a very similar set of commands to install ToneMaker with `PipX` (https://pipx.pypa.io/latest/), I will describe how to do so using `uv` below.
 
-### ... Using A Package Manager
+## Install `uv`
 
-Instructions for installing on macOS, Linux, and Windows using a package manager can be found here: (https://github.com/pypa/pipx?tab=readme-ov-file#install-pipx). 
+You should install `uv` using the instructions at https://docs.astral.sh/uv/getting-started/installation/. However, the commands are simple and have been reproduced here for the most common use cases (though many other approaches are described for each platform on the `uv` installation webpage):
 
-All Linux distributions come with a built-in package manager, but users of macOS and Windows will need to install a package manager before installing PipX. On macOS this will require the Homebrew package manager (https://brew.sh/) and on Windows, this requires the Scoop  package manager (https://github.com/ScoopInstaller/Scoop). You will need to install the required package manager before following the instructions linked above.
+### MacOS & Linux
 
-### ... Using Python
-
-If you'd rather not use a package manager to install PipX, you can do the following:
-
-Make sure you have Python installed on your system. For macOS and Linux, it will be installed by default. On Windows, you can install Python via the app-store.
-
-Open a terminal and issue these commands:
-
-Install Pipx:
+Use curl to download the script and execute it with sh:
 
 ```bash
-python -m pip install pipx
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Make sure you can access installed apps directly from the commandline:
+If your system doesn't have curl, you can use wget:
 
 ```bash
-python -m pipx ensurepath
+wget -qO- https://astral.sh/uv/install.sh | sh
 ```
 
----
+### Windows
 
-## Installing ToneMaker Using PipX
-
-### You Installed PipX Using A Package Manager
-
-Open a terminal and issue this command
+Use irm to download the script and execute it with iex:
 
 ```bash
-pipx install "git+https://github.com/travisseymour/ToneMaker"
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-### You Installed PipX Using Python
-
-Open a terminal and issue this command
+## Install ToneMaker
 
 ```bash
-python -m pipx install "git+https://github.com/travisseymour/ToneMaker"
+uv tool install git+https://github.com/travisseymour/ToneMaker.git
 ```
+
+Hopefully, that worked without a problem! Otherwise, see below for ways to troubleshoot the most common issues:
+
+🚩 If `uv` tool install complains about the `git` tool being missing, then you must [**install git**](https://git-scm.com/downloads) and then retry the command above.
+
+🚩 If `uv` tool install complains that no appropriate version of Python is installed on your system, then you can install such a version using this command:
+
+`uv python install [VERSION]`
+
+e.g.:
+
+```bash
+uv python install 3.10
+```
+
+🚩 If `uv` still says it cannot find Python, then find a version yourself like this:
+
+```bash
+uv python list
+```
+
+You should see all the installed python versions and their respective file paths. Copy one of the paths that match the target Python version and re-run the EPICcoder installation using this form `uv tool install git+https://github.com/travisseymour/EPICcoder.git --ptyhon [THE COPIED PYTHON PATH]`.
+
+For example:
+
+- It might look like this on Linux:
+  - ```bash
+    uv tool install git+https://github.com/travisseymour/ToneMaker.git --python .local/share/uv/python/cpython-3.10.14-linux-x86_64-gnu/bin/python3
+    ```
+- It might look like this on MacOS:
+  - ```bash
+    uv tool install git+https://github.com/travisseymour/ToneMaker.git --python .local/share/uv/python/cpython-3.12.7-macos-x86_64-none/bin/python3
+    ```
+- It might look like this on Windows:
+  - ```bash
+    uv tool install git+https://github.com/travisseymour/ToneMaker.git --python AppData\Roaming\uv\python\cpython-3.11.9-windows-x86_64-none\python.exe
+    ```
 
 --- 
 
@@ -79,48 +101,20 @@ To create a wavefile called "low_tone_220Hz.wav" that plays a 220 hertz tone for
 tonemaker 220 100 low_tone_220Hz.wav
 ```
 
-_if you have problems on MS Windows, see "Potential Issues On MS Windows" section below!_
-
 ---
 
-## Upgrading ToneMaker Using PipX
+## Upgrade ToneMaker
 
-If a new release of ToneMaker is posted on GitHub, you can upgrade your version using PipX.
-
-### You Installed PipX Using A Package Manager
-
-Open a terminal and issue this command
+Upgrade ToneMaker by opening your operating system's terminal application and type this command:
 
 ```bash
-pipx upgrade tonemaker
+uv tool upgrade tonemaker
 ```
 
-### You Installed PipX Using Python
+## Uninstall ToneMaker
 
-Open a terminal and issue this command
+Uninstall ToneMaker by opening your operating system's terminal application and type this command:
 
 ```bash
-python -m pipx upgrade tonemaker
+uv tool uninstall tonemaker
 ```
-
-_if you have problems on MS Windows, see "Potential Issues On MS Windows" section below!_
-
----
-
-## Potential Issues On MS Windows
-
-### Windows can't locate PipX installed applications from the commandline
-
-In some cases, the earlier `python -m pipx ensurepath` command won't correctly add the necessary folder to your sytem path. The result is that running PipX installed programs won't work properly. E.g., issuing commands like `tonemaker --help` will result in an error.
-
-If you are in this situation, you can try manually adding the necessary PipX folder to your Windows PATH variable:
-
-<mark>Make sure you type this command carefully and double-check it before pressing ENTER. Otherwise, you could leave your PATH in an unusable state.</mark>
-
-```bash
-setx PATH "%PATH%;C:\Users\YOURUSERNAME\.local\bin\"
-```
-
-Now close the terminal, re-open it, and try the command again.
-
----

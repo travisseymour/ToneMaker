@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tonemaker"
+version = "2025.1.14.0"
+description = "Tool for generating sound files based on pure tone specifications."
+authors = [{ name = "Travis L. Seymour, PhD", email = "nogard@ucsc.edu" }]
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT License"}
+keywords = ["tool", "sound", "audio"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Natural Language :: English",
+    "Topic :: Utilities",
+    "Topic :: Education"
+]
+dependencies = [
+    "loguru",
+    "numpy",
+    "scipy",
+    "typer"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "ruff",
+    "build",
+    "check-manifest"
+]
+
+[project.scripts]
+tonemaker = "tonemaker.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[project.urls]
+"homepage" = "https://github.com/travisseymour/ToneMaker"
+
+[tool.setuptools]
+zip-safe = false
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+lint.ignore = ["F821", "F841", "E722"]  # undefined name, assigned but unused variable, bare except
