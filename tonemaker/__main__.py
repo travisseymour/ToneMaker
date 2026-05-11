@@ -1,5 +1,5 @@
 """
-Copyright (c) 2024 Travis L. Seymour, PhD
+Copyright (c) 2024-2026 Travis L. Seymour, PhD
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -21,8 +21,6 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 """
-
-import sys
 
 import numpy as np
 import typer
@@ -65,14 +63,13 @@ def generate_pure_tone(frequency: int, duration: int, filename: str):
         msg = typer.style(f"Sound file '{filename}' generated successfully.", fg=typer.colors.GREEN)
         typer.echo(msg)
 
-    except Exception as e:
+    except (ValueError, OSError) as e:
         msg = typer.style(f"Generation of sound file '{filename}' failed: '{e}'", fg=typer.colors.RED)
         typer.echo(msg)
 
 
 def main():
     app()
-    sys.exit()
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ Travis L. Seymour, PhD
 
 Note: The generated tone will be 16-bit with a 44100 sample rate.
 
-<mark>Note: Project metadata format has been changed. If you installed ToneMaker prior to 2025, upgrading might now work. You need to uninstall ToneMaker and reinstall. Afterwards, upgrades will work as expected.
+Note: Project metadata format has been changed. If you installed ToneMaker prior to 2025, upgrading might not work. You need to uninstall ToneMaker and reinstall. Afterwards, upgrades will work as expected.
 
 ---
 
@@ -58,9 +58,9 @@ uv tool install git+https://github.com/travisseymour/ToneMaker.git
 
 Hopefully, that worked without a problem! Otherwise, see below for ways to troubleshoot the most common issues:
 
-🚩 If `uv` tool install complains about the `git` tool being missing, then you must [**install git**](https://git-scm.com/downloads) and then retry the command above.
+If `uv` tool install complains about the `git` tool being missing, then you must [**install git**](https://git-scm.com/downloads) and then retry the command above.
 
-🚩 If `uv` tool install complains that no appropriate version of Python is installed on your system, then you can install such a version using this command:
+If `uv` tool install complains that no appropriate version of Python is installed on your system, then you can install such a version using this command:
 
 `uv python install [VERSION]`
 
@@ -70,13 +70,13 @@ e.g.:
 uv python install 3.10
 ```
 
-🚩 If `uv` still says it cannot find Python, then find a version yourself like this:
+If `uv` still says it cannot find Python, then find a version yourself like this:
 
 ```bash
 uv python list
 ```
 
-You should see all the installed python versions and their respective file paths. Copy one of the paths that match the target Python version and re-run the EPICcoder installation using this form `uv tool install git+https://github.com/travisseymour/EPICcoder.git --ptyhon [THE COPIED PYTHON PATH]`.
+You should see all the installed python versions and their respective file paths. Copy one of the paths that match the target Python version and re-run the ToneMaker installation using this form `uv tool install git+https://github.com/travisseymour/ToneMaker.git --python [THE COPIED PYTHON PATH]`.
 
 For example:
 

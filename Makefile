@@ -2,7 +2,7 @@
 # Install the package with development dependencies
 # alternative to `pip install -r requirements`
 install:
-	pip install .[dev] && pip uninstall tonemaker -y && make clean
+	pip install .[dev]
 
 # Clean up build artifacts
 clean:
@@ -12,4 +12,3 @@ clean:
 format:
 	ruff check tonemaker --fix
 	ruff format tonemaker
-	black tonemaker
