@@ -8,13 +8,12 @@ version = "2026.5.11.1"
 description = "Tool for generating sound files based on pure tone specifications."
 authors = [{ name = "Travis L. Seymour, PhD", email = "nogard@ucsc.edu" }]
 readme = "README.md"
-requires-python = ">=3.10,<3.15"
+requires-python = ">=3.11,<3.15"
 license = "MIT"
 keywords = ["tool", "sound", "audio"]
 classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -27,7 +26,7 @@ classifiers = [
 dependencies = [
     "numpy>=1.22",
     "scipy>=1.8",
-    "typer>=0.9",
+    "cyclopts>=3.0",
 ]
 
 [project.optional-dependencies]
