@@ -22,25 +22,27 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 """
 
+import cyclopts
 import numpy as np
-import typer
 from scipy.io.wavfile import write
 
-app = typer.Typer()
+app = cyclopts.App(
+    help="Tool for generating sound files based on pure tone specifications."
+)
 
 
-@app.command()
+@app.default
 def generate_pure_tone(frequency: int, duration: int, filename: str):
     """
     Generate a sound file based on a pure tone specification.
 
-    Args: frequency (int): The frequency of the tone in Hertz.
-    duration (int): The duration of the sound in milliseconds.
-    filename (str): The filename to save the sound file.
+    Args:
+        frequency: The frequency of the tone in Hertz.
+        duration: The duration of the sound in milliseconds.
+        filename: The filename to save the sound file.
 
-    E.g.:
-
-    > tonemaker 220 100 low_tone_220Hz.wav
+    Example:
+        tonemaker 220 100 low_tone_220Hz.wav
     """
 
     try:
@@ -60,12 +62,10 @@ def generate_pure_tone(frequency: int, duration: int, filename: str):
         # TODO: see if it's possible to have an option for mp3 files
         write(filename, sample_rate, scaled_data)
 
-        msg = typer.style(f"Sound file '{filename}' generated successfully.", fg=typer.colors.GREEN)
-        typer.echo(msg)
+        print(f"\033[32mSound file '{filename}' generated successfully.\033[0m")
 
     except (ValueError, OSError) as e:
-        msg = typer.style(f"Generation of sound file '{filename}' failed: '{e}'", fg=typer.colors.RED)
-        typer.echo(msg)
+        print(f"\033[31mGeneration of sound file '{filename}' failed: '{e}'\033[0m")
 
 
 def main():
